@@ -4,8 +4,6 @@ from pkg_resources import resource_listdir
 from zope.testing import doctest, cleanup, renormalizing
 import zope.component.eventtesting
 
-def setUpZope(test):
-    zope.component.eventtesting.setUp(test)
 
 def cleanUpZope(test):
     cleanup.cleanUp()
@@ -29,9 +27,8 @@ def suiteFromPackage(name):
         if filename == '__init__.py':
             continue
 
-        dottedname = 'grok.tests.%s.%s' % (name, filename[:-3])
+        dottedname = 'grokcore.xmlrpc.tests.%s.%s' % (name, filename[:-3])
         test = doctest.DocTestSuite(dottedname,
-                                    setUp=setUpZope,
                                     tearDown=cleanUpZope,
                                     checker=checker,
                                     optionflags=doctest.ELLIPSIS+
@@ -42,11 +39,7 @@ def suiteFromPackage(name):
 
 def test_suite():
     suite = unittest.TestSuite()
-    for name in ['adapter', 'error', 'event', 'security', 'catalog',
-                 'zcml', 'utility', 'xmlrpc', 'container', 'viewlet',
-                 'traversal', 'grokker', 'directive',
-                 'baseclass', 'application',
-                 'conflict']:
+    for name in ['xmlrpc']:
         suite.addTest(suiteFromPackage(name))
     return suite
 

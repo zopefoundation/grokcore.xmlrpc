@@ -34,30 +34,32 @@ methods in a class:
   >>> print server.rest()
   ME GROK TIRED!
 """
-import grok
+import grokcore.component as grok
+import grokcore.xmlrpc
+import grokcore.security
 import zope.interface
 
-class MammothRPC(grok.XMLRPC):
+class MammothRPC(grokcore.xmlrpc.XMLRPC):
     grok.context(zope.interface.Interface)
 
     def stomp(self):
         return 'Manfred stomped.'
 
-    @grok.require('zope.ManageContent')
+    @grokcore.security.require('zope.ManageContent')
     def dance(self):
         return 'Manfred doesn\'t like to dance.'
 
-class CavemanRPC(grok.XMLRPC):
+class CavemanRPC(grokcore.xmlrpc.XMLRPC):
     grok.context(zope.interface.Interface)
-    grok.require('zope.ManageContent')
+    grokcore.security.require('zope.ManageContent')
 
     def hunt(self):
         return 'ME GROK LIKE MAMMOTH!'
 
-    @grok.require('zope.View')
+    @grokcore.security.require('zope.View')
     def eat(self):
         return 'MMM, MANFRED TASTE GOOD!'
 
-    @grok.require(grok.Public)
+    @grokcore.security.require(grokcore.security.Public)
     def rest(self):
         return 'ME GROK TIRED!'

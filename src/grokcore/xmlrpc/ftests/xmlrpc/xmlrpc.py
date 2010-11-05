@@ -16,18 +16,19 @@ traverse to::
   'baby pounced.'
   
 """
-import grok
+import grokcore.component as grok
+import grokcore.xmlrpc
 
 
-class Mammoth(grok.Model):
+class Mammoth(grok.Context):
     def traverse(self, name):
         if name == 'baby':
             return MammothBaby()
 
-class MammothBaby(grok.Model):
+class MammothBaby(grok.Context):
     pass
 
-class MammothRPC(grok.XMLRPC):
+class MammothRPC(grokcore.xmlrpc.XMLRPC):
     grok.context(Mammoth)
     
     def stomp(self):
@@ -36,7 +37,7 @@ class MammothRPC(grok.XMLRPC):
     def dance(self):
         return '%s doesn\'t like to dance.' % self.context.__name__
 
-class BabyRPC(grok.XMLRPC):
+class BabyRPC(grokcore.xmlrpc.XMLRPC):
     grok.context(MammothBaby)
 
     def pounce(self):
