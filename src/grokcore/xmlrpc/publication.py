@@ -43,6 +43,5 @@ class GrokXMLRPCFactory(XMLRPCFactory):
 
     """
     def __call__(self):
-        import pdb; pdb.set_trace() 
         request, publication = super(GrokXMLRPCFactory, self).__call__()
         return request, GrokXMLRPCPublication
