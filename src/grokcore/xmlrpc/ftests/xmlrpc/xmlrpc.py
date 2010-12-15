@@ -18,14 +18,15 @@ traverse to::
 """
 import grokcore.component as grok
 import grokcore.xmlrpc
+from grokcore.content import Model
 
 
-class Mammoth(grok.Context):
+class Mammoth(Model):
     def traverse(self, name):
         if name == 'baby':
             return MammothBaby()
 
-class MammothBaby(grok.Context):
+class MammothBaby(Model):
     pass
 
 class MammothRPC(grokcore.xmlrpc.XMLRPC):
