@@ -18,6 +18,7 @@ tests_require = [
     'grokcore.view [security_publication]',
     'zope.app.wsgi',
     'zope.app.appsetup',
+    'zope.app.http',
     'zope.testing',
     ]
 
