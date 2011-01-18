@@ -9,7 +9,7 @@
    <include package="grokcore.xmlrpc" />
    <include package="grokcore.traverser" />
    <include package="grokcore.view" file="publication_security.zcml" />
-   <include package="zope.app.http.exception" />
+
    <grok:grok package=".ftests" />
 
 </configure>
