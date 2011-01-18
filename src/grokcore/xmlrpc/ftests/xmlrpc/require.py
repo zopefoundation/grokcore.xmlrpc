@@ -9,29 +9,6 @@ raise Unauthorized:
   >>> print server.stomp()
   Manfred stomped.
 
-XXX temporarily register a view for Unauthorized exceptions, awaiting a
-[zope|grokcore].errorview package.
-
-  >>> from zope.interface import implements
-  >>> from zope.component import provideAdapter
-  >>> from zope.security.interfaces import IUnauthorized
-  >>> from zope.publisher.interfaces.http import IHTTPRequest, IHTTPException
-  >>> class Unauthorized(object):
-  ...     implements(IHTTPException)
-  ...     def __init__(self, context, request):
-  ...         self.context = context
-  ...         self.request = request
-  ...     def __call__(self):
-  ...         self.request.unauthorized('basic realm="Zope"')
-  ...         return ''
-  ...     __str__ = __call__
-  >>> provideAdapter(
-  ...    Unauthorized, adapts=(IUnauthorized, IHTTPRequest), name='index.html')
-  >>> from zope.publisher.interfaces import IDefaultViewName
-  >>> provideAdapter(
-  ...    'index.html', adapts=(IUnauthorized, IHTTPRequest),
-  ...     provides=IDefaultViewName)
-
   >>> print server.dance()
   Traceback (most recent call last):
   ProtocolError: <ProtocolError for localhost/: 401 401 Unauthorized>

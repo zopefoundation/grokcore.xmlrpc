@@ -1,20 +1,20 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:grok="http://namespaces.zope.org/grok">
-
-  <!-- this overrides Zope 3's publication factories because they have
-       the same name; we also need to change the priority because of
-       the ZCML discriminator -->
-  <publisher
-      name="XMLRPC"
-      factory=".publication.GrokXMLRPCFactory"
-      methods="POST"
-      mimetypes="text/xml"
-      priority="21"
-      />
-
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:grok="http://namespaces.zope.org/grok">
 
   <include package="." file="meta.zcml" />
+
+  <!-- this overrides Zope 3's publication factories because they have
+  the same name; we also need to change the priority because of
+  the ZCML discriminator -->
+
+  <publisher
+    name="XMLRPC"
+    factory=".publication.GrokXMLRPCFactory"
+    methods="POST"
+    mimetypes="text/xml"
+    priority="21"
+  />
 
 </configure>
