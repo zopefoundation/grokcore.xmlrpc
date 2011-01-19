@@ -5,7 +5,7 @@
   i18n_domain="grokcore.xmlrpc"
   package="grokcore.xmlrpc">
 
-  <include package="zope.errorview" file="errorview.zcml" />
+  <include package="zope.errorview" file="http.zcml" />
   <include package="grokcore.view" file="ftesting.zcml" />
   <include package="grokcore.xmlrpc" />
   <include package="grokcore.traverser" />
