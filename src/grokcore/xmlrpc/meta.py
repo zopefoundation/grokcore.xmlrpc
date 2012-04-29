@@ -26,6 +26,7 @@ from grokcore.view import make_checker
 
 import martian
 import grokcore.component
+import grokcore.component.util
 import grokcore.security
 import grokcore.xmlrpc
 
@@ -76,7 +77,7 @@ class XMLRPCGrokker(martian.MethodGrokker):
         adapts = (context, IXMLRPCRequest)
         config.action(
             discriminator=('adapter', adapts, interface.Interface, name),
-            callable=component.provideAdapter,
+            callable=grokcore.component.util.provideAdapter,
             args=(method_view, adapts, interface.Interface, name),
             )
         config.action(
