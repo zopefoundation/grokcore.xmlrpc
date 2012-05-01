@@ -52,7 +52,6 @@ setup(
         'grokcore.traverser',
         'grokcore.content',
         'martian',
-        'simplejson',
         'zope.component',
         'zope.interface',
         'zope.publisher',
