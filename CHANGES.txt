@@ -2,7 +2,7 @@
 Changes
 =======
 
-1.2 (unreleased)
+1.2 (2012-05-02)
 ================
 
 - Use the component registration api in grokcore.component.
