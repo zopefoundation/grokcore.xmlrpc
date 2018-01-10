@@ -2,7 +2,7 @@
   >>> getRootFolder()["Manfred"] = Mammoth()
 
   >>> from zope.app.wsgi.testlayer import XMLRPCServerProxy
-  >>> server = XMLRPCServerProxy("http://localhost/")
+  >>> server = XMLRPCServerProxy("http://localhost/", transport=transport)
 
   >>> server.Manfred.stomp()
   'Manfred stomped.'
@@ -14,7 +14,7 @@ traverse to::
 
   >>> server.Manfred.baby.pounce()
   'baby pounced.'
-  
+
 """
 import grokcore.component as grok
 import grokcore.xmlrpc
@@ -31,7 +31,7 @@ class MammothBaby(Model):
 
 class MammothRPC(grokcore.xmlrpc.XMLRPC):
     grok.context(Mammoth)
-    
+
     def stomp(self):
         return '%s stomped.' % self.context.__name__
 
@@ -43,4 +43,3 @@ class BabyRPC(grokcore.xmlrpc.XMLRPC):
 
     def pounce(self):
         return '%s pounced.' % self.context.__name__
-
