@@ -1,13 +1,23 @@
 import doctest
+import grokcore.xmlrpc
 import re
 import unittest
+import zope.app.wsgi.testlayer
+import zope.testbrowser.wsgi
+
 from pkg_resources import resource_listdir
-
+from zope.app.wsgi._compat import httpclient, xmlrpcclient
 from zope.testing import renormalizing
-from zope.app.wsgi.testlayer import BrowserLayer, http
-import grokcore.xmlrpc
 
-FunctionalLayer = BrowserLayer(grokcore.xmlrpc)
+
+class Layer(
+        zope.testbrowser.wsgi.TestBrowserLayer,
+        zope.app.wsgi.testlayer.BrowserLayer):
+    pass
+
+
+layer = Layer(grokcore.xmlrpc, allowTearDown=True)
+
 
 checker = renormalizing.RENormalizing([
     # Accommodate to exception wrapping in newer versions of mechanize
@@ -15,24 +25,39 @@ checker = renormalizing.RENormalizing([
     ])
 
 
-def http_call(method, path, data=None, **kw):
-    """Function to help make RESTful calls.
+class XMLRPCTestTransport(xmlrpcclient.Transport):
+    verbose = False
+    wsig_app = None
 
-    method - HTTP method to use
-    path - testbrowser style path
-    data - (body) data to submit
-    kw - any request parameters
-    """
+    def request(self, host, handler, request_body, verbose=0):
+        request = "POST %s HTTP/1.0\n" % (handler,)
+        request += "Content-Length: %i\n" % len(request_body)
+        request += "Content-Type: text/xml\n"
 
-    if path.startswith('http://localhost'):
-        path = path[len('http://localhost'):]
-    request_string = '%s %s HTTP/1.1\n' % (method, path)
-    for key, value in kw.items():
-        request_string += '%s: %s\n' % (key, value)
-    if data is not None:
-        request_string += '\r\n'
-        request_string += data
-    return http(request_string, handle_errors=False)
+        host, extra_headers, x509 = self.get_host_info(host)
+        if extra_headers:
+            request += "Authorization: %s\n" % (
+                dict(extra_headers)["Authorization"],)
+
+        request += "\n"
+        request += request_body.decode()
+        response = zope.app.wsgi.testlayer.http(
+            self.wsgi_app(), request.encode())
+        errcode = response.getStatus()
+        errmsg = response.getStatusString()
+        headers = response.getHeaders()
+
+        if errcode != 200:
+            raise xmlrpcclient.ProtocolError(
+                host + handler,
+                errcode, errmsg,
+                headers
+                )
+
+        res = httpclient.HTTPResponse(
+            zope.app.wsgi.testlayer.FakeSocket(response.getOutput()))
+        res.begin()
+        return self.parse_response(res)
 
 
 def suiteFromPackage(name):
@@ -45,16 +70,22 @@ def suiteFromPackage(name):
             continue
 
         dottedname = 'grokcore.xmlrpc.ftests.%s.%s' % (name, filename[:-3])
+        transport = XMLRPCTestTransport()
+        transport.wsgi_app = layer.make_wsgi_app
         test = doctest.DocTestSuite(
             dottedname,
             checker=checker,
-            extraglobs=dict(http_call=http_call,
-                            http=http,
-                            getRootFolder=FunctionalLayer.getRootFolder),
-            optionflags=(doctest.ELLIPSIS +
-                         doctest.NORMALIZE_WHITESPACE +
-                         doctest.REPORT_NDIFF))
-        test.layer = FunctionalLayer
+            extraglobs=dict(
+                getRootFolder=layer.getRootFolder,
+                transport=transport,
+                ),
+            optionflags=(
+                doctest.ELLIPSIS +
+                doctest.NORMALIZE_WHITESPACE +
+                doctest.REPORT_NDIFF +
+                renormalizing.IGNORE_EXCEPTION_MODULE_IN_PYTHON2
+                ))
+        test.layer = layer
 
         suite.addTest(test)
     return suite
