@@ -28,7 +28,7 @@ tests_require = [
 
 setup(
     name='grokcore.xmlrpc',
-    version='3.0.0',
+    version='3.0.1.dev0',
     author='Grok Team',
     author_email='grok-dev@zope.org',
     url='http://grok.zope.org',
