@@ -6,9 +6,10 @@ before it can be used in grok.require() in an XMLRPC class.
   >>> testing.grok(__name__)
   Traceback (most recent call last):
   ...
-  ConfigurationExecutionError: martian.error.GrokError: Undefined permission
-  'doesnt.exist' in <class 'grokcore.xmlrpc.tests.xmlrpc.missing_permission.MissingPermission'>. Use grok.Permission first.
-  ...
+  zope.configuration.config.ConfigurationExecutionError: \
+  martian.error.GrokError: Undefined permission 'doesnt.exist' in \
+  <class 'grokcore.xmlrpc.tests.xmlrpc.missing_permission.MissingPermission'>.\
+  Use grok.Permission first...
 
 """
 
@@ -23,4 +24,3 @@ class MissingPermission(grokcore.xmlrpc.XMLRPC):
 
     def foo(self):
         pass
-

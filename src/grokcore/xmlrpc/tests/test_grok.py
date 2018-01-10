@@ -35,7 +35,10 @@ def suiteFromPackage(name):
             dottedname,
             tearDown=cleanUpZope,
             checker=checker,
-            optionflags=doctest.ELLIPSIS + doctest.NORMALIZE_WHITESPACE)
+            optionflags=(
+                doctest.ELLIPSIS +
+                doctest.NORMALIZE_WHITESPACE +
+                renormalizing.IGNORE_EXCEPTION_MODULE_IN_PYTHON2))
 
         suite.addTest(test)
     return suite

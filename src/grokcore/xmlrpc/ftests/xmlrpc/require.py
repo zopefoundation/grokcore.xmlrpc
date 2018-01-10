@@ -1,37 +1,37 @@
 """
   >>> from zope.app.wsgi.testlayer import XMLRPCServerProxy
-  >>> server = XMLRPCServerProxy("http://localhost/")
-  >>> mgr_server = XMLRPCServerProxy("http://mgr:mgrpw@localhost/")
+  >>> server = XMLRPCServerProxy("http://localhost/", transport=transport)
+  >>> mgr_server = XMLRPCServerProxy("http://mgr:mgrpw@localhost/", transport=transport)
 
 We can access a public method just fine, but a protected method will
 raise Unauthorized:
 
-  >>> print server.stomp()
+  >>> print(server.stomp())
   Manfred stomped.
 
-  >>> print server.dance()
+  >>> print(server.dance())
   Traceback (most recent call last):
-  ProtocolError: <ProtocolError for localhost/: 401 401 Unauthorized>
+  xmlrpc.client.ProtocolError: <ProtocolError for localhost/: 401 401 Unauthorized>
 
 With manager privileges, the protected method is accessible, however:
 
-  >>> print mgr_server.dance()
+  >>> print(mgr_server.dance())
   Manfred doesn't like to dance.
 
 The same applies when a default permission is defined for all XML-RPC
 methods in a class:
 
-  >>> print server.hunt()
+  >>> print(server.hunt())
   Traceback (most recent call last):
-  ProtocolError: <ProtocolError for localhost/: 401 401 Unauthorized>
+  xmlrpc.client.ProtocolError: <ProtocolError for localhost/: 401 401 Unauthorized>
 
-  >>> print mgr_server.hunt()
+  >>> print(mgr_server.hunt())
   ME GROK LIKE MAMMOTH!
 
-  >>> print server.eat()
+  >>> print(server.eat())
   MMM, MANFRED TASTE GOOD!
 
-  >>> print server.rest()
+  >>> print(server.rest())
   ME GROK TIRED!
 """
 import grokcore.component as grok
