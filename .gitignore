@@ -1,8 +1,11 @@
-*.pyc
 __pycache__
-src/*.egg-info
-
+.coverage
 .installed.cfg
+.mr.developer.cfg
+.tox
+*.pyc
 bin
+dev
 develop-eggs
 parts
+src/*.egg-info

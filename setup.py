@@ -1,8 +1,10 @@
 from setuptools import setup, find_packages
 import os
 
+
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+
 
 long_description = (
     read('README.txt')
@@ -13,14 +15,16 @@ long_description = (
     '********\n'
     )
 
+
 tests_require = [
-    'grokcore.view [security_publication]',
-    'grokcore.view [test]',
+    'grokcore.view[security_publication]',
+    'grokcore.view[test]',
     'zope.app.appsetup',
     'zope.app.wsgi',
     'zope.errorview',
     'zope.testing',
     ]
+
 
 setup(
     name='grokcore.xmlrpc',
@@ -40,18 +44,18 @@ setup(
         'Framework :: Zope3',
         ],
     packages=find_packages('src'),
-    package_dir = {'': 'src'},
+    package_dir={'': 'src'},
     namespace_packages=['grokcore'],
-    include_package_data = True,
+    include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'setuptools',
         'grokcore.component >= 2.5dev',
-        'grokcore.security',
-        'grokcore.view',
-        'grokcore.traverser',
         'grokcore.content',
+        'grokcore.security',
+        'grokcore.traverser',
+        'grokcore.view',
         'martian',
+        'setuptools',
         'zope.component',
         'zope.interface',
         'zope.publisher',
