@@ -8,7 +8,7 @@ before it can be used in grok.require() in an XMLRPC class.
   ...
   zope.configuration.config.ConfigurationExecutionError: \
   martian.error.GrokError: Undefined permission 'doesnt.exist' in \
-  <class 'grokcore.xmlrpc.tests.xmlrpc.missing_permission.MissingPermission'>.\
+  <class 'grokcore.xmlrpc.tests.base.xmlrpc.missing_permission.MissingPermission'>.\
   Use grok.Permission first...
 
 """

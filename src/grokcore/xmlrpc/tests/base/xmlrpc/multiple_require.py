@@ -6,7 +6,7 @@ Multiple calls of grok.require in one class are not allowed.
   Traceback (most recent call last):
      ...
   martian.error.GrokError: grok.require was called multiple times in \
-  <class 'grokcore.xmlrpc.tests.xmlrpc.multiple_require.MultipleXMLRPC'>. \
+  <class 'grokcore.xmlrpc.tests.base.xmlrpc.multiple_require.MultipleXMLRPC'>. \
   It may only be set once for a class.
 """
 import grokcore.component as grok

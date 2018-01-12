@@ -10,7 +10,7 @@ before it can be used in @grok.require().
   martian.error.GrokError: Undefined permission \
   'doesnt.exist' in \
   <class \
-  'grokcore.xmlrpc.tests.xmlrpc.missing_permission2.MissingPermission'>.\
+  'grokcore.xmlrpc.tests.base.xmlrpc.missing_permission2.MissingPermission'>.\
   Use grok.Permission first...
 
 """
