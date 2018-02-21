@@ -8,7 +8,7 @@ whether it's hooked up at all:
   Traceback (most recent call last):
   ...
   martian.error.GrokError: No module-level context for \
-  <class 'grokcore.xmlrpc.tests.xmlrpc.nocontext.HomeRPC'>, please use the \
+  <class 'grokcore.xmlrpc.tests.base.xmlrpc.nocontext.HomeRPC'>, please use the \
   'context' directive.
 
 """

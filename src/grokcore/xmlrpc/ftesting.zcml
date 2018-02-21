@@ -11,6 +11,6 @@
   <include package="grokcore.traverser" />
   <include package="grokcore.view" file="publication_security.zcml" />
 
-  <grok:grok package=".ftests" />
+  <grok:grok package=".tests.functional" />
 
 </configure>
