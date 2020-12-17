@@ -11,7 +11,7 @@ with-docs = false
 with-sphinx-doctests = false
 
 [coverage]
-fail-under = 95
+fail-under = 94
 
 [flake8]
 additional-config = [
