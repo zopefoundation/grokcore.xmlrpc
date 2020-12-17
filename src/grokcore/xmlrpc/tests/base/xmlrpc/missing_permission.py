@@ -13,12 +13,13 @@ before it can be used in grok.require() in an XMLRPC class.
   <class 'grokcore.xmlrpc.tests.base.xmlrpc.missing_permission.MissingPermission'>.\
   Use grok.Permission first...
 
-"""
+"""  # noqa: E501 line too long
 
 import zope.interface
 import grokcore.xmlrpc
 import grokcore.security
 import grokcore.component as grok
+
 
 class MissingPermission(grokcore.xmlrpc.XMLRPC):
     grok.context(zope.interface.Interface)

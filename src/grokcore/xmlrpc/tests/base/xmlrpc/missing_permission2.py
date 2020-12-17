@@ -22,6 +22,7 @@ import grokcore.security
 import grokcore.xmlrpc
 import zope.interface
 
+
 class MissingPermission(grokcore.xmlrpc.XMLRPC):
     grok.context(zope.interface.Interface)
 

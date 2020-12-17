@@ -42,6 +42,7 @@ class GrokXMLRPCFactory(XMLRPCFactory):
     - The publication class that Grok uses to publish to a XML-RPC.
 
     """
+
     def __call__(self):
         request, publication = super(GrokXMLRPCFactory, self).__call__()
         return request, GrokXMLRPCPublication

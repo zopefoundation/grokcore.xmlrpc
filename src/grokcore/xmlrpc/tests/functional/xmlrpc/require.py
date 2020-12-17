@@ -33,11 +33,12 @@ methods in a class:
 
   >>> print(server.rest())
   ME GROK TIRED!
-"""
+"""  # noqa: E501 line too long
 import grokcore.component as grok
 import grokcore.xmlrpc
 import grokcore.security
 import zope.interface
+
 
 class MammothRPC(grokcore.xmlrpc.XMLRPC):
     grok.context(zope.interface.Interface)
@@ -48,6 +49,7 @@ class MammothRPC(grokcore.xmlrpc.XMLRPC):
     @grokcore.security.require('zope.ManageContent')
     def dance(self):
         return 'Manfred doesn\'t like to dance.'
+
 
 class CavemanRPC(grokcore.xmlrpc.XMLRPC):
     grok.context(zope.interface.Interface)

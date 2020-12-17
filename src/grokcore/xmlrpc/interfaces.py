@@ -28,7 +28,7 @@ class IBaseClasses(grokcore.component.interfaces.IBaseClasses,
 
 
 class IGrokcoreXMLRPCAPI(grokcore.component.interfaces.IGrokcoreComponentAPI,
-                        grokcore.security.interfaces.IGrokcoreSecurityAPI,
-                        grokcore.view.interfaces.IGrokcoreViewAPI,
-                        IBaseClasses):
+                         grokcore.security.interfaces.IGrokcoreSecurityAPI,
+                         grokcore.view.interfaces.IGrokcoreViewAPI,
+                         IBaseClasses):
     pass

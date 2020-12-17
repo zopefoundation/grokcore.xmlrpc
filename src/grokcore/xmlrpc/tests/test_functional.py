@@ -44,7 +44,7 @@ class XMLRPCTestTransport(xmlrpcclient.Transport):
                 host + handler,
                 errcode, errmsg,
                 headers
-                )
+            )
 
         res = httpclient.HTTPResponse(
             zope.app.wsgi.testlayer.FakeSocket(response.getOutput()))
@@ -71,13 +71,13 @@ def suiteFromPackage(name):
             extraglobs=dict(
                 getRootFolder=layer.getRootFolder,
                 transport=transport,
-                ),
+            ),
             optionflags=(
                 doctest.ELLIPSIS +
                 doctest.NORMALIZE_WHITESPACE +
                 doctest.REPORT_NDIFF +
                 doctest.IGNORE_EXCEPTION_DETAIL
-                ))
+            ))
         test.layer = layer
 
         suite.addTest(test)
@@ -89,6 +89,7 @@ def test_suite():
     for name in ['xmlrpc']:
         suite.addTest(suiteFromPackage(name))
     return suite
+
 
 if __name__ == '__main__':
     unittest.main(defaultTest='test_suite')

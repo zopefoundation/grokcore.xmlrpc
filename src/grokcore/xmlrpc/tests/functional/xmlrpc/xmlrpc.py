@@ -26,8 +26,10 @@ class Mammoth(Model):
         if name == 'baby':
             return MammothBaby()
 
+
 class MammothBaby(Model):
     pass
+
 
 class MammothRPC(grokcore.xmlrpc.XMLRPC):
     grok.context(Mammoth)
@@ -37,6 +39,7 @@ class MammothRPC(grokcore.xmlrpc.XMLRPC):
 
     def dance(self):
         return '%s doesn\'t like to dance.' % self.context.__name__
+
 
 class BabyRPC(grokcore.xmlrpc.XMLRPC):
     grok.context(MammothBaby)

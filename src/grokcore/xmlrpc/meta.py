@@ -29,7 +29,7 @@ import grokcore.component
 import grokcore.security
 import grokcore.xmlrpc
 
-from zope import interface, component
+from zope import interface
 from zope.publisher.xmlrpc import XMLRPCView
 from zope.location import Location
 
@@ -37,6 +37,7 @@ from zope.location import Location
 class MethodPublisher(XMLRPCView, Location):
     """Copied from zope.app.publisher.xmlrpc to get rid of that dependency.
     """
+
     def __getParent(self):
         return hasattr(self, '_parent') and self._parent or self.context
 
@@ -78,10 +79,10 @@ class XMLRPCGrokker(martian.MethodGrokker):
             discriminator=('adapter', adapts, interface.Interface, name),
             callable=grokcore.component.provideAdapter,
             args=(method_view, adapts, interface.Interface, name),
-            )
+        )
         config.action(
             discriminator=('protectName', method_view, '__call__'),
             callable=make_checker,
             args=(factory, method_view, permission),
-            )
+        )
         return True
