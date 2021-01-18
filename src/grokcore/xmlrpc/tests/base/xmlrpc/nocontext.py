@@ -11,8 +11,9 @@ whether it's hooked up at all:
   <class 'grokcore.xmlrpc.tests.base.xmlrpc.nocontext.HomeRPC'>, please use the \
   'context' directive.
 
-"""
+"""  # noqa: E501 line too long
 import grokcore.xmlrpc
+
 
 class HomeRPC(grokcore.xmlrpc.XMLRPC):
 

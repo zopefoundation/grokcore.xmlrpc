@@ -23,6 +23,7 @@ import grokcore.view
 
 from zope.interface import implementer
 
+
 @implementer(grokcore.view.IGrokSecurityView)
 class XMLRPC(grokcore.view.ViewSupport):
     """Base class for XML-RPC endpoints in Grok applications.
