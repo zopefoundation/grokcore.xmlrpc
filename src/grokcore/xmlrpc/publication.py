@@ -44,5 +44,5 @@ class GrokXMLRPCFactory(XMLRPCFactory):
     """
 
     def __call__(self):
-        request, publication = super(GrokXMLRPCFactory, self).__call__()
+        request, publication = super().__call__()
         return request, GrokXMLRPCPublication

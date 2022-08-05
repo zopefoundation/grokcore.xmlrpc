@@ -4,8 +4,7 @@ before it can be used in @grok.require().
 
   >>> from grokcore.xmlrpc import testing
 
-  # PY2 - remove '+IGNORE_EXCEPTION_DETAIL'  when dropping Python 2 support:
-  >>> testing.grok(__name__)  # doctest: +IGNORE_EXCEPTION_DETAIL
+  >>> testing.grok(__name__)
   Traceback (most recent call last):
   ...
   zope.configuration.config.ConfigurationExecutionError: \
