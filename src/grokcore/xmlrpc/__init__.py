@@ -15,10 +15,11 @@
 from grokcore.component import *
 from grokcore.security import *
 from grokcore.view import *
+from zope.interface import moduleProvides
 
 from grokcore.xmlrpc.components import XMLRPC
-
 from grokcore.xmlrpc.interfaces import IGrokcoreXMLRPCAPI
-from zope.interface import moduleProvides
+
+
 moduleProvides(IGrokcoreXMLRPCAPI)
 __all__ = list(IGrokcoreXMLRPCAPI)

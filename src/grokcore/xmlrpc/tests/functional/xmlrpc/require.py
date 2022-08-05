@@ -35,9 +35,10 @@ methods in a class:
   ME GROK TIRED!
 """  # noqa: E501 line too long
 import grokcore.component as grok
-import grokcore.xmlrpc
 import grokcore.security
 import zope.interface
+
+import grokcore.xmlrpc
 
 
 class MammothRPC(grokcore.xmlrpc.XMLRPC):

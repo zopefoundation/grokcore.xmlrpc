@@ -21,17 +21,16 @@ and available as `martian` recursively examines the packages and modules
 of a Grok-based web application.
 
 """
-from zope.publisher.interfaces.xmlrpc import IXMLRPCRequest
-from grokcore.view import make_checker
-
-import martian
 import grokcore.component
 import grokcore.security
-import grokcore.xmlrpc
-
+import martian
+from grokcore.view import make_checker
 from zope import interface
-from zope.publisher.xmlrpc import XMLRPCView
 from zope.location import Location
+from zope.publisher.interfaces.xmlrpc import IXMLRPCRequest
+from zope.publisher.xmlrpc import XMLRPCView
+
+import grokcore.xmlrpc
 
 
 class MethodPublisher(XMLRPCView, Location):

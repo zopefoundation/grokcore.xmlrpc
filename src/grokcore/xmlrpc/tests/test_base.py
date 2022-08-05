@@ -3,7 +3,9 @@ import re
 import unittest
 
 from pkg_resources import resource_listdir
-from zope.testing import cleanup, renormalizing
+
+from zope.testing import cleanup
+from zope.testing import renormalizing
 
 
 def cleanUpZope(test):
