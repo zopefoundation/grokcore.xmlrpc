@@ -25,14 +25,14 @@ class XMLRPCTestTransport(xmlrpcclient.Transport):
     wsig_app = None
 
     def request(self, host, handler, request_body, verbose=0):
-        request = "POST %s HTTP/1.0\n" % (handler,)
+        request = f"POST {handler} HTTP/1.0\n"
         request += "Content-Length: %i\n" % len(request_body)
         request += "Content-Type: text/xml\n"
 
         host, extra_headers, x509 = self.get_host_info(host)
         if extra_headers:
-            request += "Authorization: %s\n" % (
-                dict(extra_headers)["Authorization"],)
+            request += "Authorization: {}\n".format(
+                dict(extra_headers)["Authorization"])
 
         request += "\n"
         request += request_body.decode()
@@ -57,7 +57,7 @@ class XMLRPCTestTransport(xmlrpcclient.Transport):
 
 def suiteFromPackage(name):
     layer_dir = 'functional'
-    files = resource_listdir(__name__, '{}/{}'.format(layer_dir, name))
+    files = resource_listdir(__name__, f'{layer_dir}/{name}')
     suite = unittest.TestSuite()
     for filename in files:
         if not filename.endswith('.py'):
@@ -65,7 +65,7 @@ def suiteFromPackage(name):
         if filename == '__init__.py':
             continue
 
-        dottedname = 'grokcore.xmlrpc.tests.%s.%s.%s' % (
+        dottedname = 'grokcore.xmlrpc.tests.{}.{}.{}'.format(
             layer_dir, name, filename[:-3])
         transport = XMLRPCTestTransport()
         transport.wsgi_app = layer.make_wsgi_app
