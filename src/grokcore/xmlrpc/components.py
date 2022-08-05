@@ -20,7 +20,6 @@ provided here.
 """
 
 import grokcore.view
-
 from zope.interface import implementer
 
 

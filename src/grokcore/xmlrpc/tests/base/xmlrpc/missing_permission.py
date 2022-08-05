@@ -15,10 +15,11 @@ before it can be used in grok.require() in an XMLRPC class.
 
 """  # noqa: E501 line too long
 
-import zope.interface
-import grokcore.xmlrpc
-import grokcore.security
 import grokcore.component as grok
+import grokcore.security
+import zope.interface
+
+import grokcore.xmlrpc
 
 
 class MissingPermission(grokcore.xmlrpc.XMLRPC):

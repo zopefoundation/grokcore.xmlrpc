@@ -17,8 +17,9 @@ traverse to::
 
 """
 import grokcore.component as grok
-import grokcore.xmlrpc
 from grokcore.content import Model
+
+import grokcore.xmlrpc
 
 
 class Mammoth(Model):

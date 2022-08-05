@@ -1,11 +1,14 @@
 import doctest
-import grokcore.xmlrpc
 import unittest
-import zope.app.wsgi.testlayer
-import zope.testbrowser.wsgi
 
 from pkg_resources import resource_listdir
-from zope.app.wsgi._compat import httpclient, xmlrpcclient
+
+import zope.app.wsgi.testlayer
+import zope.testbrowser.wsgi
+from zope.app.wsgi._compat import httpclient
+from zope.app.wsgi._compat import xmlrpcclient
+
+import grokcore.xmlrpc
 
 
 class Layer(

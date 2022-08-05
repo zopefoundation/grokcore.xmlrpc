@@ -11,8 +11,9 @@ Multiple calls of grok.require in one class are not allowed.
 """  # noqa: E501 line too long
 import grokcore.component as grok
 import grokcore.security
-import grokcore.xmlrpc
 import zope.interface
+
+import grokcore.xmlrpc
 
 
 class One(grokcore.security.Permission):

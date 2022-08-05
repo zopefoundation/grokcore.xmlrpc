@@ -19,8 +19,9 @@ before it can be used in @grok.require().
 
 import grokcore.component as grok
 import grokcore.security
-import grokcore.xmlrpc
 import zope.interface
+
+import grokcore.xmlrpc
 
 
 class MissingPermission(grokcore.xmlrpc.XMLRPC):

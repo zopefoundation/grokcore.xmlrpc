@@ -11,8 +11,9 @@ that is never used.
 
 import grokcore.component as grok
 import grokcore.security
-import grokcore.xmlrpc
 import zope.interface
+
+import grokcore.xmlrpc
 
 
 class Foo(grokcore.security.Permission):
