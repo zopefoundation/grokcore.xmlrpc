@@ -1,12 +1,12 @@
 import doctest
+import http.client
 import unittest
+import xmlrpc.client
 
 from pkg_resources import resource_listdir
 
 import zope.app.wsgi.testlayer
 import zope.testbrowser.wsgi
-from zope.app.wsgi._compat import httpclient
-from zope.app.wsgi._compat import xmlrpcclient
 
 import grokcore.xmlrpc
 
@@ -20,7 +20,7 @@ class Layer(
 layer = Layer(grokcore.xmlrpc, allowTearDown=True)
 
 
-class XMLRPCTestTransport(xmlrpcclient.Transport):
+class XMLRPCTestTransport(xmlrpc.client.Transport):
     verbose = False
     wsig_app = None
 
@@ -43,13 +43,13 @@ class XMLRPCTestTransport(xmlrpcclient.Transport):
         headers = response.getHeaders()
 
         if errcode != 200:
-            raise xmlrpcclient.ProtocolError(
+            raise xmlrpc.client.ProtocolError(
                 host + handler,
                 errcode, errmsg,
                 headers
             )
 
-        res = httpclient.HTTPResponse(
+        res = http.client.HTTPResponse(
             zope.app.wsgi.testlayer.FakeSocket(response.getOutput()))
         res.begin()
         return self.parse_response(res)
