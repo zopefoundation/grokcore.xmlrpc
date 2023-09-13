@@ -39,6 +39,7 @@ setup(
     long_description=long_description,
     license='ZPL',
     classifiers=[
+        'Development Status :: 7 - Inactive',
         'Environment :: Web Environment',
         'Framework :: Zope :: 3',
         'Intended Audience :: Developers',
